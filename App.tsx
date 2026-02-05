@@ -3,7 +3,7 @@ import { TOP_CONTACTS, FOOTER_SUPERVISION, MAP_EMBED_URL } from './constants';
 import { ContactLink, SupervisionContact } from './types';
 
 const AUTH_KEY = 'sp_auth_2026';
-const CORRECT_PASSWORD = 'spchapai2026';
+const CORRECT_PASSWORD = 'gmap2026';
 const EMERGENCY_HELP_NUMBER = '+8801320125626';
 
 const toEnglishDigits = (str: string) => {
