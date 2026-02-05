@@ -58,7 +58,7 @@ export const FOOTER_SUPERVISION: SupervisionContact[] = [
     name: 'গৌতম কুমার বিশ্বাস',
     designation: 'পুলিশ সুপার, চাঁপাইনবাবগঞ্জ',
     phone: '+৮৮০১৩২০-১২৫৫০০',
-    profileUrl: 'https://police.chapainawabganj.gov.bd/bn/site/officer_list/xSCR-%E0%A6%9C%E0%A6%A8%E0%A6%BE%E0%A6%AC-%E0%A6%8F-%E0%A6%8F%E0%A6%87%E0%A6%9A-%E0%A6%8F%E0%A6%AE-%E0%A6%86%E0%A6%AC%E0%A6%A6%E0%A7%81%E0%A6%B0-%E0%A6%B0%E0%A6%95%E0%A6%BF%E0%A6%AC-%E0%A6%AC%E0%A6%BF%E0%A6%8F%E0%A6%AE-%E0%A6%AA%E0%A6%BF%E0%A6%AA%E0%A6%BF%E0%A6%8F%E0%A6%AE-%E0%A6%AC%E0%A6%BE%E0%A6%B0'
+    profileUrl: 'https://police.chapainawabganj.gov.bd/bn/site/officer_list/xSCR-%E0%A6%9C%E0%A6%A8%E0%A6%BE%E0%A6%AC-%E0%A6%8F-%E0%A6%8F%E0%A6%87%E0%A6%9A-%E0%A6%8F%E0%A6%AE-%E0%A6%86%E0%A6%AC%E0%A6%A6%E0%A7%81%E0%A6%B0-%E0%A6%B0%E0%A6%95%E0%A6%BF%E0%A6%AC-%E0%A6%AC%E0%A6%BF%E0%A6%8F%E0%A6%AE-%E0%A6%AA%E0%A6%BF%E0%A6%8F%E0%A6%AE-%E0%A6%AC%E0%A6%BE%E0%A6%B0'
   },
   {
     name: 'জনাব মোঃ হাসান তারেক',
@@ -74,5 +74,4 @@ export const FOOTER_SUPERVISION: SupervisionContact[] = [
   }
 ];
 
-// Removed ehbc parameter as it sometimes fails on certain network configurations
-export const MAP_EMBED_URL = "https://www.google.com/maps/d/embed?mid=1GQloFi8nGuKX7baApzOgDZ0wJKVyKqU";
+export const MAP_EMBED_URL = "https://www.google.com/maps/d/u/1/embed?mid=1GQloFi8nGuKX7baApzOgDZ0wJKVyKqU&ehbc=2E312F";
