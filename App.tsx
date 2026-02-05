@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { TOP_CONTACTS, FOOTER_SUPERVISION, MAP_EMBED_URL } from './constants';
 import { ContactLink, SupervisionContact } from './types';
@@ -121,7 +120,7 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 pb-8 transition-colors">
-      <header className="bg-emerald-700 dark:bg-emerald-900 text-white pt-6 pb-24 px-4 rounded-b-[40px] shadow-lg relative z-0">
+      <header className="bg-emerald-700 dark:bg-emerald-900 text-white pt-6 pb-32 px-4 rounded-b-[40px] shadow-lg relative z-0">
         <div className="max-w-4xl mx-auto flex justify-end">
           <button onClick={() => setDark(!dark)} className="p-2.5 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 text-lg transition-transform active:scale-90">
             {dark ? '☀️' : '🌙'}
@@ -129,67 +128,95 @@ const App: React.FC = () => {
         </div>
         <div className="max-w-2xl mx-auto text-center mt-2">
           <span className="bg-white/20 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">Election Cell 2026</span>
-          <h1 className="text-2xl md:text-3xl font-black mt-3 leading-tight">ত্রয়োদশ জাতীয় সংসদ নির্বাচন ২০২৬</h1>
-          <p className="mt-4 text-[11px] md:text-xs leading-relaxed italic bg-black/10 p-3 rounded-xl inline-block">
+          <h1 className="text-2xl md:text-4xl font-black mt-3 leading-tight">ত্রয়োদশ জাতীয় সংসদ নির্বাচন ২০২৬</h1>
+          <p className="mt-4 text-[11px] md:text-sm leading-relaxed italic bg-black/10 p-3 rounded-xl inline-block border border-white/10">
             "একটি অবাধ ও সুষ্ঠ নির্বাচন আয়োজনে বাংলাদেশ পুলিশ দৃঢ়প্রতিজ্ঞ"
           </p>
         </div>
       </header>
 
-      <main className="max-w-4xl mx-auto px-4 -mt-12 relative z-10">
+      <main className="max-w-4xl mx-auto px-4 -mt-20 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mb-8">
           {TOP_CONTACTS.map((c, i) => <ContactCard key={i} contact={c} />)}
         </div>
 
-        <section className="bg-white dark:bg-slate-900 rounded-2xl overflow-hidden shadow-sm border border-slate-100 dark:border-slate-800">
-          <div className="bg-slate-800 p-3 text-white text-xs font-bold flex justify-between px-4">
-            <span>🗺️ নির্বাচনী ভোটকেন্দ্র ম্যাপ</span>
-            <span className="opacity-60 text-[10px]">গোমস্তাপুর থানা</span>
-          </div>
-          <div className="w-full aspect-video bg-slate-200 dark:bg-slate-800">
-            <iframe 
-              src={MAP_EMBED_URL} 
-              className="w-full h-full" 
-              loading="lazy" 
-              title="Gomastapur Election Map"
-              allowFullScreen
-            ></iframe>
-          </div>
-          
-          <div className="p-5 bg-emerald-50/40 dark:bg-emerald-900/10 border-t border-slate-100 dark:border-slate-800">
-            <h4 className="font-bold text-emerald-800 dark:text-emerald-400 mb-4 flex items-center gap-2 text-sm">
-              🗺️ ম্যাপ ব্যবহারের সংক্ষিপ্ত নির্দেশনা
-            </h4>
+        {/* Improved Map Card Section */}
+        <div className="relative group/card mb-8">
+          <a 
+            href={MAP_EMBED_URL} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="block bg-white dark:bg-slate-900 rounded-[2.5rem] p-8 md:p-12 text-center shadow-2xl border-2 border-slate-50 dark:border-slate-800 hover:border-blue-500/30 dark:hover:border-blue-500/30 transition-all duration-500 overflow-hidden relative"
+          >
+            {/* Background Decoration */}
+            <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/5 rounded-full -mr-16 -mt-16 blur-2xl group-hover/card:scale-150 transition-transform duration-700"></div>
             
-            <div className="space-y-5">
-              <div className="flex gap-4">
-                <div className="bg-white dark:bg-slate-800 w-8 h-8 rounded-lg flex items-center justify-center shadow-sm flex-shrink-0 text-lg border border-slate-100 dark:border-slate-700">⛶</div>
-                <div>
-                  <p className="text-xs font-bold text-slate-800 dark:text-slate-200">ম্যাপ বড় করে দেখতে:</p>
-                  <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">ডান পাশের ফুলস্ক্রিন বাটন [ ⛶ ] চাপুন।</p>
+            <div className="relative flex flex-col items-center">
+              <div className="mb-6">
+                <div className="relative bg-white dark:bg-slate-800 w-20 h-20 md:w-24 md:h-24 rounded-3xl shadow-2xl flex items-center justify-center border-2 border-blue-50 dark:border-slate-700 group-hover/card:scale-110 transition-transform duration-500">
+                  <svg className="w-10 h-10 md:w-12 md:h-12 text-blue-700 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path>
+                  </svg>
                 </div>
               </div>
 
-              <div className="flex gap-4">
-                <div className="bg-white dark:bg-slate-800 w-8 h-8 rounded-lg flex items-center justify-center shadow-sm flex-shrink-0 text-lg border border-slate-100 dark:border-slate-700">◧</div>
-                <div>
-                  <p className="text-xs font-bold text-slate-800 dark:text-slate-200">ইউনিয়ন খুঁজতে:</p>
-                  <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">ম্যাপের বাম পাশে থাকা মেনু বাটন [ ◧ ] চাপুন, তারপর ইউনিয়ন নির্বাচন করুন।</p>
-                </div>
-              </div>
+              <h4 className="text-xl md:text-3xl font-black text-slate-900 dark:text-white mb-3 leading-tight">
+                গোমস্তাপুর থানা ভোট কেন্দ্র মানচিত্র
+              </h4>
+              <p className="text-sm md:text-base text-slate-500 dark:text-slate-400 font-bold max-w-sm mb-8 leading-relaxed">
+                গুগল ম্যাপসে বিস্তারিত কেন্দ্র দেখতে নিচের বাটনে ক্লিক করুন
+              </p>
 
-              <div className="flex gap-4">
-                <div className="bg-white dark:bg-slate-800 w-8 h-8 rounded-lg flex items-center justify-center shadow-sm flex-shrink-0 text-lg border border-slate-100 dark:border-slate-700">🔍</div>
-                <div>
-                  <p className="text-xs font-bold text-slate-800 dark:text-slate-200">ভোট/কেন্দ্র স্পষ্ট দেখতে:</p>
-                  <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">ম্যাপের উপর জুম ইন করুন।</p>
-                </div>
-              </div>
-
-              <div className="pt-4 border-t border-slate-200 dark:border-slate-800 text-[10px] text-emerald-600 dark:text-emerald-500 font-bold italic text-center">
-                ✨ মোবাইল ও কম্পিউটার—দুই জায়গাতেই একইভাবে কাজ করবে।
+              <div className="inline-flex items-center gap-3 bg-blue-700 text-white px-8 py-4 rounded-2xl text-base md:text-lg font-black shadow-xl shadow-blue-700/20 group-hover/card:bg-blue-800 group-hover/card:shadow-blue-700/40 transition-all active:scale-95">
+                <span>ম্যাপটি খুলুন</span>
+                <svg className="w-6 h-6 animate-bounce-x" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                </svg>
               </div>
             </div>
+
+            <div className="absolute bottom-6 left-0 right-0 px-6 flex justify-between items-center opacity-40">
+                <span className="text-[9px] font-black uppercase tracking-widest text-slate-900 dark:text-slate-200">Interactive Map Preview</span>
+                <span className="text-[9px] font-black uppercase tracking-widest text-slate-900 dark:text-slate-200">Google My Maps</span>
+            </div>
+          </a>
+        </div>
+
+        {/* Map Usage Instructions */}
+        <section className="bg-white dark:bg-slate-900 rounded-3xl p-6 md:p-8 shadow-sm border border-slate-100 dark:border-slate-800">
+          <h4 className="font-bold text-slate-800 dark:text-slate-100 mb-6 flex items-center gap-3 text-sm md:text-base">
+            <span className="bg-blue-100 dark:bg-blue-900/30 p-2 rounded-lg">🗺️</span> 
+            ম্যাপ ব্যবহারের সংক্ষিপ্ত নির্দেশনা
+          </h4>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="flex gap-4">
+              <div className="bg-slate-50 dark:bg-slate-800 w-10 h-10 rounded-xl flex items-center justify-center shadow-sm flex-shrink-0 text-xl border border-slate-100 dark:border-slate-700">⛶</div>
+              <div>
+                <p className="text-xs font-bold text-slate-800 dark:text-slate-200">ম্যাপ বড় করে দেখতে:</p>
+                <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">ডান পাশের ফুলস্ক্রিন বাটন [ ⛶ ] চাপুন।</p>
+              </div>
+            </div>
+
+            <div className="flex gap-4">
+              <div className="bg-slate-50 dark:bg-slate-800 w-10 h-10 rounded-xl flex items-center justify-center shadow-sm flex-shrink-0 text-xl border border-slate-100 dark:border-slate-700">◧</div>
+              <div>
+                <p className="text-xs font-bold text-slate-800 dark:text-slate-200">ইউনিয়ন খুঁজতে:</p>
+                <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">ম্যাপের বাম পাশে থাকা মেনু বাটন [ ◧ ] চাপুন, তারপর ইউনিয়ন নির্বাচন করুন।</p>
+              </div>
+            </div>
+
+            <div className="flex gap-4">
+              <div className="bg-slate-50 dark:bg-slate-800 w-10 h-10 rounded-xl flex items-center justify-center shadow-sm flex-shrink-0 text-xl border border-slate-100 dark:border-slate-700">🔍</div>
+              <div>
+                <p className="text-xs font-bold text-slate-800 dark:text-slate-200">ভোট/কেন্দ্র স্পষ্ট দেখতে:</p>
+                <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">ম্যাপের উপর জুম ইন করুন।</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-6 pt-5 border-t border-slate-50 dark:border-slate-800 text-[10px] text-blue-600 dark:text-blue-400 font-bold italic text-center">
+            ✨ মোবাইল ও কম্পিউটার—দুই জায়গাতেই একইভাবে কাজ করবে।
           </div>
         </section>
 
@@ -210,6 +237,16 @@ const App: React.FC = () => {
       <footer className="mt-12 py-8 text-center border-t border-slate-100 dark:border-slate-900">
         <p className="text-[10px] text-slate-400">© ২০২৬ গোমস্তাপুর থানা নির্বাচনী সেল, চাঁপাইনবাবগঞ্জ পুলিশ।</p>
       </footer>
+
+      <style>{`
+        @keyframes bounce-x {
+          0%, 100% { transform: translateX(0); }
+          50% { transform: translateX(5px); }
+        }
+        .animate-bounce-x {
+          animation: bounce-x 1s infinite;
+        }
+      `}</style>
     </div>
   );
 };
