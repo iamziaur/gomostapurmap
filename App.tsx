@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { TOP_CONTACTS, FOOTER_SUPERVISION, MAP_EMBED_URL } from './constants';
 import { ContactLink, SupervisionContact } from './types';
@@ -65,6 +66,7 @@ const App: React.FC = () => {
   const [dark, setDark] = useState(() => localStorage.getItem('t') === 'd');
   const [isAuthorized, setIsAuthorized] = useState(() => localStorage.getItem(AUTH_KEY) === 'true');
   const [passwordInput, setPasswordInput] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [attempts, setAttempts] = useState(0);
   const [error, setError] = useState('');
 
@@ -89,23 +91,33 @@ const App: React.FC = () => {
   if (!isAuthorized) {
     return (
       <div className={`min-h-screen flex items-center justify-center p-6 ${dark ? 'bg-slate-950 text-white' : 'bg-slate-50 text-slate-900'}`}>
-        <div className="w-full max-w-md bg-white dark:bg-slate-900 rounded-3xl shadow-xl p-8 border border-slate-100 dark:border-slate-800 text-center">
+        <div className="w-full max-w-md bg-white dark:bg-slate-900 rounded-3xl shadow-xl p-8 border border-slate-100 dark:border-slate-800 text-center transition-all">
           <div className="text-4xl mb-6">{attempts >= 5 ? '🆘' : '🔒'}</div>
           <h1 className="text-xl font-bold mb-2">প্রবেশাধিকার যাচাই</h1>
           <p className="text-xs text-slate-500 mb-6">অ্যাপটি ব্যবহারের জন্য পাসওয়ার্ড দিন</p>
           <form onSubmit={handleLogin} className="space-y-4">
-            <input 
-              type="password" 
-              value={passwordInput}
-              onChange={(e) => setPasswordInput(e.target.value)}
-              disabled={attempts >= 5}
-              placeholder="পাসওয়ার্ড..."
-              className="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 focus:ring-2 focus:ring-emerald-500 outline-none text-center"
-              autoFocus
-            />
-            {error && <p className="text-[10px] text-red-500 font-bold">{error}</p>}
+            <div className="relative group">
+              <input 
+                type={showPassword ? "text" : "password"} 
+                value={passwordInput}
+                onChange={(e) => setPasswordInput(e.target.value)}
+                disabled={attempts >= 5}
+                placeholder="পাসওয়ার্ড লিখুন..."
+                className="w-full px-4 py-3 pr-12 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 focus:ring-2 focus:ring-emerald-500 outline-none text-center font-medium"
+                autoFocus
+              />
+              <button 
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-emerald-500 transition-colors"
+                title={showPassword ? "Hide Password" : "Show Password"}
+              >
+                <i className={`fa-solid ${showPassword ? 'fa-eye-slash' : 'fa-eye'}`}></i>
+              </button>
+            </div>
+            {error && <p className="text-[10px] text-red-500 font-bold animate-pulse">{error}</p>}
             {attempts < 5 ? (
-              <button type="submit" className="w-full py-3 bg-emerald-600 text-white rounded-xl font-bold active:scale-95 shadow-lg shadow-emerald-500/20">প্রবেশ করুন</button>
+              <button type="submit" className="w-full py-3 bg-emerald-600 text-white rounded-xl font-bold active:scale-95 shadow-lg shadow-emerald-500/20 hover:bg-emerald-700 transition-all">প্রবেশ করুন</button>
             ) : (
               <button type="button" onClick={() => window.location.href=`tel:${EMERGENCY_HELP_NUMBER}`} className="w-full py-3 bg-red-600 text-white rounded-xl font-bold active:scale-95">
                 <div className="text-xs">ডিউটি অফিসার, গোমস্তাপুর থানা</div>
@@ -120,22 +132,22 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 pb-8 transition-colors">
-      <header className="bg-emerald-700 dark:bg-emerald-900 text-white pt-6 pb-32 px-4 rounded-b-[40px] shadow-lg relative z-0">
+      <header className="bg-emerald-700 dark:bg-emerald-900 text-white pt-6 pb-40 px-4 rounded-b-[40px] shadow-lg relative z-0">
         <div className="max-w-4xl mx-auto flex justify-end">
-          <button onClick={() => setDark(!dark)} className="p-2.5 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 text-lg transition-transform active:scale-90">
+          <button onClick={() => setDark(!dark)} className="p-2.5 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 text-lg transition-transform active:scale-90 hover:bg-white/20">
             {dark ? '☀️' : '🌙'}
           </button>
         </div>
         <div className="max-w-2xl mx-auto text-center mt-2">
           <span className="bg-white/20 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">Election Cell 2026</span>
-          <h1 className="text-2xl md:text-4xl font-black mt-3 leading-tight">ত্রয়োদশ জাতীয় সংসদ নির্বাচন ২০২৬</h1>
-          <p className="mt-4 text-[11px] md:text-sm leading-relaxed italic bg-black/10 p-3 rounded-xl inline-block border border-white/10">
+          <h1 className="text-2xl md:text-4xl font-black mt-3 leading-tight px-4">ত্রয়োদশ জাতীয় সংসদ নির্বাচন ২০২৬</h1>
+          <p className="mt-4 text-[11px] md:text-sm leading-relaxed italic bg-black/10 p-3 rounded-xl inline-block border border-white/10 mx-4">
             "একটি অবাধ ও সুষ্ঠ নির্বাচন আয়োজনে বাংলাদেশ পুলিশ দৃঢ়প্রতিজ্ঞ"
           </p>
         </div>
       </header>
 
-      <main className="max-w-4xl mx-auto px-4 -mt-20 relative z-10">
+      <main className="max-w-4xl mx-auto px-4 -mt-24 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mb-8">
           {TOP_CONTACTS.map((c, i) => <ContactCard key={i} contact={c} />)}
         </div>
@@ -148,7 +160,6 @@ const App: React.FC = () => {
             rel="noopener noreferrer"
             className="block bg-white dark:bg-slate-900 rounded-[2.5rem] p-8 md:p-12 text-center shadow-2xl border-2 border-slate-50 dark:border-slate-800 hover:border-blue-500/30 dark:hover:border-blue-500/30 transition-all duration-500 overflow-hidden relative"
           >
-            {/* Background Decoration */}
             <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/5 rounded-full -mr-16 -mt-16 blur-2xl group-hover/card:scale-150 transition-transform duration-700"></div>
             
             <div className="relative flex flex-col items-center">
@@ -221,7 +232,7 @@ const App: React.FC = () => {
         </section>
 
         <section className="mt-6">
-          <a href="https://youtu.be/wBudmDxFQy4" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-3 w-full py-4 bg-red-600 text-white rounded-2xl font-bold text-sm shadow-xl shadow-red-500/20 transition-transform active:scale-[0.98]">
+          <a href="https://youtu.be/wBudmDxFQy4" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-3 w-full py-4 bg-red-600 text-white rounded-2xl font-bold text-sm shadow-xl shadow-red-500/20 transition-transform active:scale-[0.98] hover:bg-red-700">
             ▶️ কিভাবে ভোট দিবেন? ভিডিও দেখুন
           </a>
         </section>
