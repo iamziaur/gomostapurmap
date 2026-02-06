@@ -2,14 +2,7 @@
 import { ContactLink, SupervisionContact } from './types';
 
 export const TOP_CONTACTS: ContactLink[] = [
-  { 
-    name: 'চাঁপাইনবাবগঞ্জ জেলা প্রশাসক', 
-    designation: 'জেলা রিটার্নিং অফিসার', 
-    phone: '+8801318320100',
-    icon: 'fa-solid fa-building-columns',
-    iconColor: 'bg-blue-50 text-blue-600'
-  },
-  { 
+   { 
     name: 'গৌতম কুমার বিশ্বাস', 
     designation: 'পুলিশ সুপার, চাঁপাইনবাবগঞ্জ', 
     phone: '+8801320125500',
